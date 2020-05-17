@@ -1,0 +1,36 @@
+// colors
+$primary-color: #3f51b5;
+$default-text-color: #333;
+$tip-text-color: #999;
+
+// Font
+$default-font: 'Roboto', sans-serif;
+$font-14: 14px;
+$bold: 700;
+$normal: 400;
+
+// ==========================================================================
+// Media Query Ranges
+$extra-small-screen-up: 600px !default;
+$small-screen-up: 960px !default;
+$medium-screen-up: 1280px !default;
+$large-screen-up: 1920px !default;
+$extra-small-screen: 599px !default;
+$medium-screen: 1279px !default;
+$large-screen: 1919px !default;
+
+$small-and-up: "only screen and (min-width : #{$extra-small-screen-up})" !default;
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
+$extra-small-and-down: "only screen and (max-width : #{$extra-small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+
+// ==========================================================================
+// 12. Grid
+$num-cols: 12 !default;
+// $gutter-width: 1.5rem !default;
+$grid-gutter-width: 30px !default;
+$element-top-margin: $grid-gutter-width/3 !default;
+$element-bottom-margin: ($grid-gutter-width*2)/3 !default;

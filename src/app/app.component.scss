@@ -1,0 +1,14 @@
+@each $i in mat-sidenav-container, mat-sidenav, mat-sidenav-content {
+  #{$i}  {
+    height: 100%;
+  }
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+audio {
+  visibility: hidden;
+  opacity: 0;
+}

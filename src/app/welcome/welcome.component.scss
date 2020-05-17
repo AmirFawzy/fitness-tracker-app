@@ -1,0 +1,18 @@
+@import '../../assets/partials/variables';
+
+.welcome {
+  section {
+    background-color: lightgoldenrodyellow;
+    margin-top: 3em;
+    padding: 1em 1em 0 1em;
+    background-color: rgba($primary-color, .1);
+    color: $default-text-color;
+
+    mat-icon {
+      font-size: 50px;
+      width: 50px;
+      height: 50px;
+      color: $default-text-color;
+    }
+  }
+}

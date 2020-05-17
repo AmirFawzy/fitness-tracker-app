@@ -1,0 +1,10 @@
+<div class="training-progress text-center" fxLayout="column" fxLayoutAlign="start center">
+  <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+  <h5 *ngIf="exerciseName$">{{ exerciseName$ }}</h5>
+  <h3>{{ minutes | timeContext }}:{{ seconds | timeContext }}</h3>
+  <p>{{ progress === 100 ? 'Well done, you did it 😉' : 'Keep going, don\'t ever give up!' }}</p>
+  <div class="action-btns" fxLayout fxLayoutGap="20px">
+    <button mat-raised-button color="primary" (click)="onPauseOrResume()">{{ !pause ? 'Pause' : 'Resume' }}</button>
+    <button mat-raised-button color="warn" (click)="onStop()">Stop</button>
+  </div>
+</div>

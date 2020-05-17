@@ -1,0 +1,23 @@
+@import '../../../assets/partials/variables';
+
+.training-progress {
+  margin: 1em;
+
+  h5, h3 {
+    margin: 1em 0 0;
+    font-size: 1.5em;
+    text-shadow: 0 0 2px rgba($primary-color, .5);
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(to right, $primary-color, red);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  h3 {
+    font-size: 24px;
+    margin-bottom: 1em;
+  }
+  p {
+    color: $default-text-color;
+    margin-bottom: 1.7em;
+  }
+}

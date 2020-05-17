@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@import './assets/partials/normalize';
+@import './assets/partials/variables';
+@import './assets/partials/grid';
+
+* {
+  list-style: none;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: $default-font;
+  height: 100%;
+}
+
+mat-icon {
+  color: rgba(#000000, .6);
+}
+
+.nav-item-selected {
+  background-color: darken($primary-color, 5%);
+  color: darken(#fff, 10%) !important;
+}
+
+.text-center {
+  text-align: center;
+}

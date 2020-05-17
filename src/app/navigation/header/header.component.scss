@@ -1,0 +1,22 @@
+mat-toolbar {
+  .logo {
+    color: #fff;
+    text-decoration: none;
+  }
+  mat-grid-list {
+    width: 300px;
+    
+    mat-grid-tile {
+      a {
+        color: #fff;
+        font-weight: normal;
+        text-decoration: none;
+        flex: 1 1 auto;
+        text-align: center;
+        line-height: 64px;
+        letter-spacing: .4px;
+        font-size: 16px
+      }
+    }
+  }
+}

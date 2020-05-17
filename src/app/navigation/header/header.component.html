@@ -1,0 +1,33 @@
+<mat-toolbar role="heading" color="primary" #toolbar>
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="sideNavToggle()">
+      <mat-icon aria-label="menu-icon">menu</mat-icon>
+    </button>
+  </div>
+  <div class="logo">
+    <a class="logo" routerLink="/">NG Fitness</a>
+  </div>
+  <!-- <div class="spacer" fxFlex="3 1 auto"></div> -->
+  <div fxLayout fxLayoutAlign="end center" fxFlex fxHide.lt-sm>
+    <mat-grid-list cols="3" rowHeight="64px" [gutterSize]="'0px'">
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile *ngIf="!(isAuth$ | async)">
+        <a mat-button routerLink="/signup" routerLinkActive="nav-item-selected">Signup</a>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="!(isAuth$ | async)">
+        <a mat-button routerLink="/signin" routerLinkActive="nav-item-selected">Signin</a>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="isAuth$ | async">
+        <a mat-button routerLink="/training" routerLinkActive="nav-item-selected">Training</a>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="isAuth$ | async">
+        <a mat-button  (click)="onLogout()">Logout</a>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</mat-toolbar>
+
+<!-- 
+  to access on material element nativelly:
+  [style.lineHeight.px]="toolbar._elementRef.nativeElement.clientHeight"
+ -->

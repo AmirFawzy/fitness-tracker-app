@@ -1,0 +1,49 @@
+@import '../../../assets/partials/variables';
+
+h3 {
+  color: $primary-color;
+  font: {
+    size: 22px;
+  }
+}
+
+form {
+  width: 100%;
+  text-align: center;
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: .5em;
+  }
+  button[mat-raised-button] {
+    margin-top: 2.5em;
+  }
+  mat-checkbox {
+    color: $default-text-color;
+
+    .mat-checkbox-frame {
+      border-color: $default-text-color;
+    }
+  }
+  mat-spinner {
+    margin: 2.2em auto 0 auto;
+  }
+}
+
+.signin, .signup {
+  font: {
+    family: $default-font;
+    size: $font-14;
+  }
+  color: #999;
+  margin-top: 2em;
+  a {
+    text-decoration: none;
+    color: $primary-color;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+  }
+}

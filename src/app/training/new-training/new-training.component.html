@@ -1,0 +1,52 @@
+<div class="training-card" fxLayout fxLayoutAlign="center">
+  <mat-card role="group" fxFlex="400px" fxFlex.lt-sm="auto" ngStyle.lt-sm="margin: 1em">
+    <mat-card-title fxLayoutAlign="center">Time to start a workout!</mat-card-title>
+    <!-- <mat-card-content *ngIf="isExercisesLoaded && exercises" fxLayout="column" fxLayoutAlign="center center"> -->
+    <mat-card-content *ngIf="!(isExercisesLoaded$ | async) && exercises$ | async" fxLayout="column" fxLayoutAlign="center center">
+      <mat-form-field appearance="outline">
+        <mat-label>Favorite exercise</mat-label>
+        <mat-select placeholder="Choose exercise" [(value)]="selectedExercise" role="list">
+          <mat-option role="listitem">None</mat-option>
+          <!-- <ng-container *ngFor="let exercise of exercises"> -->
+          <ng-container *ngFor="let exercise of exercises$ | async">
+            <mat-option [value]="exercise.id" role="listitem">
+              {{ exercise.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <h3 class="text-center">Time</h3>
+        <form [formGroup]="timeForm" fxLayout fxLayoutAlign="space-between center" fxLayoutGap="10px">
+          <mat-form-field appearance="outline">
+            <mat-label>Minutes</mat-label>
+            <input matInput type="number" max="60" formControlName="minutes" required>
+            <mat-hint>Maximum 60 minutes. </mat-hint>
+            <mat-error *ngIf="timeForm.get('minutes').hasError('required')">Minutes are
+              <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="((timeForm.get('minutes').value > 60) || (timeForm.get('minutes').value <= 0)) && (timeForm.get('minutes').value != null)">Please enter valid minutes.</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Seconds</mat-label>
+            <input matInput type="number" max="60" formControlName="seconds">
+            <mat-hint>Maximum 60 seconds.</mat-hint>
+            <mat-error *ngIf="((timeForm.get('seconds').value > 60) || (timeForm.get('seconds').value <= 0)) && (timeForm.get('seconds').value != null)">Please enter valid seconds.</mat-error>
+          </mat-form-field>
+        </form>
+        <p class="form-error text-center" *ngIf="invalid">
+          <small>Please make sure you set your training exercise and time.</small>
+        </p>
+      </div>
+    </mat-card-content>
+    <div *ngIf="isExercisesLoaded$ | async" fxLayoutAlign="center">
+      <mat-spinner></mat-spinner>
+    </div>
+    <mat-card-actions fxLayoutAlign="center">
+      <button mat-raised-button color="primary" type="submit" *ngIf="!(isExercisesLoaded$ | async) && (exercises$ | async)" (click)="startTraining(selectedExercise)">Start</button>
+      <button mat-button type="submit" *ngIf="!(exercises$ | async) && !(isExercisesLoaded$ | async)" (click)="fetchExercises()">Fetch exercises</button>
+      <!-- <button mat-raised-button color="primary" type="submit" *ngIf="isExercisesLoaded && exercises" (click)="startTraining(selectedExercise)">Start</button> -->
+      <!-- <button mat-button type="submit" *ngIf="!exercises && isExercisesLoaded" (click)="fetchExercises()">Fetch exercises</button> -->
+    </mat-card-actions>
+  </mat-card>
+</div>

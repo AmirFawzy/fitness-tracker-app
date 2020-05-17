@@ -1,0 +1,86 @@
+<mat-sidenav-container>
+  <mat-sidenav #sideNav role="navigation" aria-label="side-nav">
+    <app-sidenav-list (closeSidenav)="sideNav.close()"></app-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (toggleSidenav)="sideNav.toggle()"></app-header>
+    <main class="container">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- 
+  what i learn about NgRx?
+  - how to create a reducer by creating in shared folder "anyName.reducer.ts" inside it - syntx "
+    export interface State {   // just for type defination
+      isLoading: T;
+    }
+    const initialState: State = {
+      isLoading: false
+    }
+    - then creating new file "anyName.actions.ts" inside it - syntx an example: "
+      export const START_LOADING = '[UI] start loading';
+      export const STOP_LOADING = '[UI] stop loading';
+
+      export class StartLoading implements Action {   // should import form ngrx/store
+        readonly type = START_LOADING;  // type is a must property form "Action"
+      }
+      export class StopLoading implements Action {
+        readonly type = STOP_LOADING;
+      }
+
+      export type UIActions = StartLoading | StopLoading;
+    "
+    export function uiReducer(state = initialState, action: UIActions) {   // it takes to args state, action // the "UIActions" is the type declared in "anyName.actions.ts"
+      switch(action.type) {   // in action there's the type property in it
+        case START_LOADING:   // exported const in "anyName.actions.ts" file
+          return {
+            isLoading: value   // i'm override the value of the const according to the condition
+          };
+        case STOP_LOADING:    // exported const in "anyName.actions.ts" file
+          return {
+            isLoading: otherValue    // i'm override the value of the const according to the condition
+          };
+        defualt:
+          return state;
+      }
+    }
+    export const getIsLoading = (state: State) => State.isLoading;
+
+    - then creating "app.reducer.ts" inside it - syntx for example "
+      import * as fromUi from 'anyName.reducer.ts'
+
+      export interface State {
+        ui: fromUi.State
+      }
+
+      export const reducers: ActionReducerMap<State> = {
+        ui: fromUi.uiReducer
+      }
+
+      export const getUiState = createFeatureSelector<fromUi.State>('ui');
+      export const getIsLoading = createSelector(getUiState, fromUi.getIsLoading);
+    "
+
+    i have to tell angular that about this reduce in "app.module.ts" import "StoreModule from @ngrx/store" in the imports
+    and "import { reducers } from 'app.reducer.ts'"
+    "StoreModule.forRoot(reducer)"
+    after that in the service or component - syntx "
+      1- import Store from ngrx/store
+      2- import * as fromRoot from 'app.reduce.ts' and import * as UI from 'anyName.actions.ts'
+      3- constructor(private store: Store<fromRoot.State>)
+      4- to use it "this.store.dispatch(new UI.StartLoading);" // the class i create in "anyName.actions.ts"
+    "
+    then in the component i can use this - syntx "
+      the same steps 1, 2, 3 above 'import, import, constructor'
+      4- create a property "anyName$: Observable<Type of The value>" // $ name convention for property controlled by NgRx
+      5- to use it "this.anyName$ = this.store.select(fromRoot.getIsLoading)"
+        // if i using "this.anyName$" in dom i should use async pipe cuz the value i get is async value "(anyName$ | async)"
+    "
+  "
+  
+  - remember "pipe(take(number))" when you work with gaurds and  any database/firebase wehn you fetch from server or 
+    even when you send/post data to server ... look to "training.service.ts" in completedExercise() or 
+    cancelExercise() method
+ -->
